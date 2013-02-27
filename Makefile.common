@@ -1,0 +1,17 @@
+ASM=avra
+
+
+
+all: hex
+
+hex: $(TARGET).asm
+	avra $(TARGET).asm --includepath ../..
+
+flash: hex
+	# TODO find the right programmer for my usb thingie. 
+	avrdude -p m103 -P /dev/ttyUSB0 -c stk500v1 -b 19200 -F -u -U flash:w:$(TARGET).hex
+
+clean:
+	rm -rf *.cof
+	rm -rf *.hex
+	rm -rf *.obj

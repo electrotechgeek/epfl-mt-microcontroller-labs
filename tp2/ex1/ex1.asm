@@ -2,3 +2,5 @@
 
 
 ; CODE HERE
+
+ldi r16, 0xff
